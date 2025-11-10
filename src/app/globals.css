@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #f9f9f9;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #0066cc;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #000000;
+  --muted: #e5e5e5;
+  --muted-foreground: #666666;
+  --accent: #0066cc;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: #e5e5e5;
+  --input: #f5f5f5;
+  --ring: #0066cc;
+  --chart-1: #3b82f6;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #8b5cf6;
+  --sidebar: #f9f9f9;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #0066cc;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0066cc;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #0066cc;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --card: #2a2a2a;
+  --card-foreground: #ffffff;
+  --popover: #2a2a2a;
+  --popover-foreground: #ffffff;
+  --primary: #3b82f6;
+  --primary-foreground: #000000;
+  --secondary: #3a3a3a;
+  --secondary-foreground: #ffffff;
+  --muted: #4a4a4a;
+  --muted-foreground: #999999;
+  --accent: #3b82f6;
+  --accent-foreground: #000000;
+  --destructive: #ef4444;
+  --border: #3a3a3a;
+  --input: #2a2a2a;
+  --ring: #3b82f6;
+  --chart-1: #60a5fa;
+  --chart-2: #34d399;
+  --chart-3: #fbbf24;
+  --chart-4: #f87171;
+  --chart-5: #a78bfa;
+  --sidebar: #2a2a2a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #3b82f6;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #3a3a3a;
+  --sidebar-ring: #3b82f6;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}

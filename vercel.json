@@ -1,0 +1,13 @@
+{
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NODE_ENV": "production",
+    "DATABASE_PATH": "/tmp/network.db"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}
