@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getUserById, updateUser, deleteUser } from '@/lib/database';
+import { getUserById, updateUser, deleteUser } from '@/lib/db';
 
 // GET /api/users/:id - Get user by ID
 export async function GET(
@@ -16,7 +16,7 @@ export async function GET(
       );
     }
 
-    const user = getUserById(id);
+    const user = await getUserById(id);
 
     if (!user) {
       return NextResponse.json(
@@ -74,7 +74,7 @@ export async function PUT(
       );
     }
 
-    const user = updateUser(id, username.trim(), age, hobbies);
+    const user = await updateUser(id, username.trim(), age, hobbies);
 
     if (!user) {
       return NextResponse.json(
@@ -108,7 +108,7 @@ export async function DELETE(
       );
     }
 
-    const result = deleteUser(id);
+    const result = await deleteUser(id);
 
     if (!result.success) {
       return NextResponse.json(

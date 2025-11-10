@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createFriendship } from '@/lib/database';
+import { createFriendship } from '@/lib/db';
 
 // POST /api/users/:id/link - Create friendship between users
 export async function POST(
@@ -33,7 +33,7 @@ export async function POST(
       );
     }
 
-    const friendship = createFriendship(userId1, userId2);
+    const friendship = await createFriendship(userId1, userId2);
 
     if (!friendship) {
       return NextResponse.json(

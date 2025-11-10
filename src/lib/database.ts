@@ -70,6 +70,33 @@ export function initializeDatabase() {
 // Initialize on import
 try {
   initializeDatabase();
+  
+  // Seed default users if database is empty (for ephemeral storage like Vercel /tmp)
+  const existingUsers = db.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
+  if (existingUsers.count === 0) {
+    console.log('Seeding database with default users...');
+    
+    // Create default users with fixed UUIDs for consistency
+    const user1Id = 'default-user-1';
+    const user2Id = 'default-user-2';
+    const user3Id = 'default-user-3';
+    
+    db.prepare(`INSERT INTO users (id, username, age, hobbies) VALUES (?, ?, ?, ?)`).run(
+      user1Id, 'Alice', 28, JSON.stringify(['Reading', 'Gaming', 'Coding'])
+    );
+    db.prepare(`INSERT INTO users (id, username, age, hobbies) VALUES (?, ?, ?, ?)`).run(
+      user2Id, 'Bob', 32, JSON.stringify(['Gaming', 'Cooking', 'Music'])
+    );
+    db.prepare(`INSERT INTO users (id, username, age, hobbies) VALUES (?, ?, ?, ?)`).run(
+      user3Id, 'Charlie', 25, JSON.stringify(['Reading', 'Music', 'Yoga'])
+    );
+    
+    // Create friendships
+    db.prepare(`INSERT INTO friendships (user_id_1, user_id_2) VALUES (?, ?)`).run(user1Id, user2Id);
+    db.prepare(`INSERT INTO friendships (user_id_1, user_id_2) VALUES (?, ?)`).run(user1Id, user3Id);
+    
+    console.log('Database seeded successfully');
+  }
 } catch (error) {
   console.error('Database initialization error:', error);
 }

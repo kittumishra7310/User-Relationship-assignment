@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { deleteFriendship } from '@/lib/database';
+import { deleteFriendship } from '@/lib/db';
 
 // DELETE /api/users/:id/unlink - Delete friendship between users
 export async function DELETE(
@@ -26,7 +26,7 @@ export async function DELETE(
       );
     }
 
-    const success = deleteFriendship(userId1, userId2);
+    const success = await deleteFriendship(userId1, userId2);
 
     if (!success) {
       return NextResponse.json(

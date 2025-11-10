@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllUsers, createUser } from '@/lib/database';
+import { getAllUsers, createUser } from '@/lib/db';
 
 // GET /api/users - Get all users
 export async function GET() {
   try {
-    const users = getAllUsers();
+    const users = await getAllUsers();
     return NextResponse.json({ users }, { status: 200 });
   } catch (error) {
     console.error('Error fetching users:', error);
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const user = createUser(username.trim(), age, hobbies);
+    const user = await createUser(username.trim(), age, hobbies);
     return NextResponse.json({ user }, { status: 201 });
   } catch (error) {
     console.error('Error creating user:', error);
